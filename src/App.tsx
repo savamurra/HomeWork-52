@@ -19,15 +19,17 @@ function App() {
 
   return (
       <>
-        <button onClick={getCardsOnWindow}>Раздать карты</button>
+        <div className="wrap">
+          <button onClick={getCardsOnWindow} className="button" type='button'>Раздать карты</button>
+        </div>
         {hand.length > 0 ? (
             <div className='cardWrapper'>
-              <div className="playingCards faceImages">
+              <div className='playingCards faceImages'>
                 {hand.map((card, index) => (
                     <CardSuits key={index} rank={`${card.rank}`} suit={`${card.suit}`}/>
                 ))}
-                <p>{outcome}</p>
               </div>
+              <p>{outcome}</p>
             </div>
         ) : <p>Раздайте карты</p>
         }
