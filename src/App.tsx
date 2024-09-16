@@ -11,6 +11,7 @@ function App() {
   const [hand, setHand] = useState<Card[]>([]);
   const pokerHand = new PokerHand(hand);
   const outcome = pokerHand.getOutcome();
+  const deckLength = cardDeck.deck;
 
 
   const getCardsOnWindow = () => {
@@ -19,20 +20,21 @@ function App() {
 
   return (
       <>
-        <div className="wrap">
-          <button onClick={getCardsOnWindow} className="button" type='button'>Раздать карты</button>
-        </div>
-        {hand.length > 0 ? (
-            <div className='cardWrapper'>
-              <div className='playingCards faceImages'>
-                {hand.map((card, index) => (
-                    <CardSuits key={index} rank={`${card.rank}`} suit={`${card.suit}`}/>
-                ))}
+          <p>Карт в колоде: {deckLength.length}</p>
+          <div className="wrap">
+              <button onClick={getCardsOnWindow} className="button" type='button'>Раздать карты</button>
+          </div>
+          {hand.length > 0 ? (
+              <div className='cardWrapper'>
+                  <div className='playingCards faceImages'>
+                      {hand.map((card, index) => (
+                          <CardSuits key={index} rank={`${card.rank}`} suit={`${card.suit}`}/>
+                      ))}
+                  </div>
+                  <p>{outcome}</p>
               </div>
-              <p>{outcome}</p>
-            </div>
-        ) : <p>Раздайте карты</p>
-        }
+          ) : <p>Раздайте карты</p>
+          }
       </>
   );
 }
